@@ -34,7 +34,7 @@ http.get('/:id', function(req, res){
 	if(db.hasOwnProperty(req.params.id)){
 		res.redirect(db[req.params.id]);
 	} else {
-		res.sendFile(__dirname + '/index.html');
+		res.redirect('/');
 	}
 });
 
