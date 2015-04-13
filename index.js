@@ -16,9 +16,9 @@ http.get('/', function(req, res){
 
 http.post('/*', function(req, res){
 	console.log(req.body.url);
-	var id = r.string()(r.engines.mt19937().autoSeed(), 7);
+	var id = r.string()(r.engines.mt19937().autoSeed(), 5);
 	while (db.hasOwnProperty(id)){
-		var id = r.string()(r.engines.mt19937().autoSeed(), 7);
+		var id = r.string()(r.engines.mt19937().autoSeed(), 5);
 	}
 	db[id] = req.body.url;
 	fs.writeFileSync('db.json', JSON.stringify(db));
