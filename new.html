@@ -86,11 +86,11 @@ h3 a:hover {
 <script>
 var id = window.location.pathname.slice(5);
 var prep = function() {
-	document.getElementById("url").value = "http://unlong.cf/" + id;
+	document.getElementById("url").value = "http://" + window.location.hostname + "/" + id;
 };
 
 var go = function() {
-	window.location.href = "http://unlong.cf/" + id;
+	window.location.href = "http://" + window.location.hostname + "/" + id;
 };
 
 </script>
