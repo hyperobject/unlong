@@ -6,6 +6,7 @@ var http = express();
 http.use(bodyParser.urlencoded({extended: false}));
 var db = JSON.parse(fs.readFileSync('db.json'));
 var index = fs.readFileSync('index.html');
+
 var r = require('random-js');
 var port = process.env.PORT || 8080
 
