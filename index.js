@@ -14,7 +14,7 @@ http.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });
 
-http.post('/*', function(req, res){
+http.post('/create', function(req, res){
 	console.log(req.body.url);
 	var id = r.string()(r.engines.mt19937().autoSeed(), 5);
 	while (db.hasOwnProperty(id)){
@@ -29,11 +29,12 @@ http.get('/new/:id', function(req, res){
 	res.sendFile(__dirname + '/new.html');
 });
 
+
 http.get('/:id', function(req, res){
 	if(db.hasOwnProperty(req.params.id)){
 		res.redirect(db[req.params.id]);
 	} else {
-		res.send('Check your URL for typos.');
+		res.sendFile(__dirname + '/index.html');
 	}
 });
 
