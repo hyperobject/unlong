@@ -34,6 +34,7 @@ h3 a:hover {
 	text-decoration: underline;
 }
 #submit {
+	outline: none;
 	color: #4183D7;
 	border: none;
 	background-color: #DFDFDF;
@@ -50,6 +51,11 @@ h3 a:hover {
 	background-color: #CFCFCF;
 }
 
+
+#submit:focus {
+	transition: background-color 0.2s;
+	background-color: #CFCFCF;
+}
 form {
 	width: auto;
 	height: 10%;
