@@ -1,5 +1,5 @@
 {
-  "name": "simple-corsproxy",
+  "name": "crossorigin.me",
   "description": "Proxy to access resources that lack the Access-Control-Allow-Origin * header",
   "version": "0.0.1",
   "author": {
@@ -8,17 +8,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "request": "^2.40.0"
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3"
   },
   "keywords": [
-    "cors",
-    "proxy",
-    "server",
-    "heroku"
+    "url",
+    "custom"
   ],
   "main": "index.js",
   "bin": {
-    "crossorigin.me": "index.js"
+    "unlong": "index.js"
   },
   "scripts": {
     "start": "node index.js"

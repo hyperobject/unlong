@@ -1,59 +1,40 @@
 #!/usr/bin/env node
-var http = require('http')
-var request = require('request')
+var express = require('express');
+var bodyParser = require('body-parser');
 var fs = require('fs');
-var domain = require('domain');
+var http = express();
+http.use(bodyParser.urlencoded({extended: false}));
+var db = JSON.parse(fs.readFileSync('db.json'));
 var index = fs.readFileSync('index.html');
-var favicon = fs.readFileSync('favicon.ico');
-
+var r = require('random-js');
 var port = process.env.PORT || 8080
 
-var server = http.createServer(function (req, res) {
-	var d = domain.create();
-	d.on('error', function (e){
-		console.log('ERROR', e.stack);
+http.get('/', function(req, res){
+	res.sendFile(__dirname + '/index.html');
+});
 
-		res.statusCode = 500;
-		res.end('Error: ' +  ((e instanceof TypeError) ? "make sure your URL is correct" : String(e)));
-	});
-
-	d.add(req);
-	d.add(res);
-
-	d.run(function() {
-		handler(req, res);
-	});
-
-}).listen(port);
-
-
-	function handler(req, res) {
-	console.log(req.url);
-	switch (req.url) {
-		case "/":
-			res.writeHead(200);
-			res.write(index);
-			res.end();
-			break;
-		case "/index.html":
-			res.writeHead(200);
-			res.write(index);
-			res.end();
-			break;
-		case "/favicon.ico":
-			res.writeHead(200);
-			res.write(favicon);
-			res.end()
-		default:
-			try {
-			res.setTimeout(25000);
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			request(req.url.slice(1), {encoding: null}, function(error, response, body) {
-      			res.write(body)
-      			res.end()
-    		})
-    		} catch (e) {
-    	   	res.end('Error: ' +  ((e instanceof TypeError) ? "make sure your URL is correct" : String(e)));
-    		}
+http.post('/*', function(req, res){
+	console.log(req.body.url);
+	var id = r.string()(r.engines.mt19937().autoSeed(), 7);
+	while (db.hasOwnProperty(id)){
+		var id = r.string()(r.engines.mt19937().autoSeed(), 7);
 	}
-}
+	db[id] = req.body.url;
+	fs.writeFileSync('db.json', JSON.stringify(db));
+	res.redirect('/new/' + id);
+});
+
+http.get('/new/:id', function(req, res){
+	res.send('Your short URL is http://' + req.hostname + '/' + req.params.id);
+});
+
+http.get('/:id', function(req, res){
+	if(db.hasOwnProperty(req.params.id)){
+		res.redirect(db[req.params.id]);
+	} else {
+		res.send('Check your URL for typos.');
+	}
+});
+
+http.listen(port);
+
