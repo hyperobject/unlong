@@ -64,6 +64,17 @@ h3 a:hover {
 	max-width: 50vw;
 }
 
+#submit {
+	border: 1px solid silver;
+	background-color: #EFEFEF;
+	border-radius: 2px;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3), 0 0px 0px 0 rgba(0, 0, 0, 0.2);
+}
+
+#submit:hover {
+	background-color: #CFCFCF;
+}
+
 code {
 	font-family: 'Droid Sans Mono';
 	font-size: 0.7em;
@@ -74,12 +85,12 @@ code {
 </style>
 </head>
 <body>
-<h1 id="header"><a href="#">unlong</a></h1>
+<h1 id="header"><a href="#">&#8635;</a></h1>
 <div id="content">
 <div id="text">
 <form action="/create" method="post">
 <input type="text" name="url" id="url">
-<input type="submit" value="Unlongify!">
+<input type="submit" value="Unlongify!" id="submit">
 </form>
 </div>
 </div>
