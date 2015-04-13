@@ -26,7 +26,7 @@ http.post('/*', function(req, res){
 });
 
 http.get('/new/:id', function(req, res){
-	res.send('Your short URL is http://' + req.hostname + '/' + req.params.id);
+	res.sendFile(__dirname + '/new.html');
 });
 
 http.get('/:id', function(req, res){

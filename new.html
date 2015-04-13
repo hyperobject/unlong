@@ -34,6 +34,7 @@ h3 a:hover {
 	text-decoration: underline;
 }
 #submit {
+	outline: none;
 	color: #4183D7;
 	border: none;
 	background-color: #DFDFDF;
@@ -50,7 +51,7 @@ h3 a:hover {
 	background-color: #CFCFCF;
 }
 
-form {
+#form {
 	width: auto;
 	height: 10%;
 	bottom: 0;
@@ -77,10 +78,21 @@ form {
 }
 </style>
 </head>
-<body>
-<form action="/create" method="post">
+<body onload="prep()">
+<div id="form">
 <input type="text" name="url" id="url">
-<input type="submit" value="&#9733;" id="submit">
-</form>
+<button id="submit" onclick="go()">&#9733;</button>
+</div>
+<script>
+var id = window.location.pathname.slice(5);
+var prep = function() {
+	document.getElementById("url").value = "http://unlong.cf/" + id;
+};
+
+var go = function() {
+	window.location.href = "http://unlong.cf/" + id;
+};
+
+</script>
 </body>
 </html>
