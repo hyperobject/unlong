@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>unlong</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300' rel='stylesheet' type='text/css'>
+<style>
+html, body {
+	min-width: 100%;
+	background: #EEE;
+	font-family: Roboto;
+	text-align: center;
+}
+
+
+
+a {
+	color: #EF4836;
+	text-decoration: underline;
+}
+
+#header a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h3 a {
+	color:inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+h3 a:hover {
+	text-decoration: underline;
+}
+#submit {
+	outline: none;
+	color: #4183D7;
+	border: none;
+	background-color: #DFDFDF;
+	border-radius: none;
+	height: 38px;
+	margin-left: -5px;
+	vertical-align: bottom;
+	font-size: 1em;
+	transition: background-color 0.2s;
+}
+
+#submit:hover {
+	transition: background-color 0.2s;
+	background-color: #CFCFCF;
+}
+
+#submit:focus {
+	transition: background-color 0.2s;
+	background-color: #CFCFCF;
+}
+
+#form {
+	width: auto;
+	height: 10%;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#url {
+	font-size: 1em;
+	border: none;
+	outline: none;
+	height: 35px;
+	width: 500px;
+	display: inline;
+	border-bottom: 1px solid white;
+	transition: border-bottom 0.2s;
+}
+
+#url:focus {
+	border-bottom: 1px solid #F22613;
+	transition: border-bottom 0.2s;
+}
+</style>
+</head>
+<body onload="prep()">
+<form action="/create" method="post">
+<input type="text" name="url" id="url">
+<button id="submit" onclick="go()">&#9733;</button>
+</form>
+<script>
+var prep = function() {
+	document.getElementById("url").placeholder = "URL does not exist - unlong URLs are temporary";
+};
+
+var go = function() {
+	window.location.href = "/";
+};
+
+</script>
+</body>
+</html>

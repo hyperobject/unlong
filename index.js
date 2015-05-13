@@ -29,12 +29,14 @@ http.get('/new/:id', function(req, res){
 	res.sendFile(__dirname + '/new.html');
 });
 
-
+http.get('/no/:id', function(req, res){
+	res.sendFile(__dirname + '/no.html');
+});
 http.get('/:id', function(req, res){
 	if(db.hasOwnProperty(req.params.id)){
 		res.redirect(db[req.params.id]);
 	} else {
-		res.redirect('/');
+		res.redirect('/no/' + req.params.id);
 	}
 });
 
